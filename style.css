@@ -1,0 +1,26 @@
+body {
+  height: 100dvh;
+  background-color: grey;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+form {
+  background-color: white;
+  display: flex;
+  flex-direction: column;
+  width: 30dvw;
+  padding: 3rem;
+  border-radius: 20px;
+  gap: 25px;
+}
+
+section {
+  display: flex;
+  justify-content: space-between;
+}
+
+label:hover {
+  cursor: pointer;
+}
