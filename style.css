@@ -2,6 +2,7 @@ body {
   height: 100dvh;
   background-color: grey;
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
 }
@@ -23,4 +24,9 @@ section {
 
 label:hover {
   cursor: pointer;
+}
+
+p{
+
+  color: aliceblue;
 }
