@@ -3,11 +3,13 @@ const input = {
   consumo: document.querySelector("#consumo"),
   velocidade: document.querySelector("#velocidade"),
   duracao: document.querySelector("#duracao"),
+  precoCombustivel: document.querySelector('#precoCombustivel')
 };
 
 const elemento = {
   formulario: document.querySelector("form"),
-  paragrafo: document.querySelector("p"),
+  paragrafo: document.querySelectorAll("p"),
+  
 };
 
 const veiculo = {
@@ -27,6 +29,7 @@ const combustivel = {
   tipo: "",
   precoEtanol: 3.899,
   precoGasolina: 5.999,
+  preco_combustivel:""
 };
 
 input.combustivel.forEach((radio) => {
@@ -62,7 +65,6 @@ if(combustivel.tipo.toLowerCase() === 'etanol'){
   viagem.percurso = (viagem.percurso - ((viagem.percurso * 0,3) *100))
 }
 
-console.log(typeof viagem.percurso)
 
 
   // MÉTODO (REPLACE) PARA SUBSTITUIR "." POR "," NA EXIBIÇÃO DA DISTÂNCIA TOTAL
@@ -71,32 +73,26 @@ console.log(typeof viagem.percurso)
   // CALCULO DO CONSUMO EM LITROS GASTOS NA VIAGEM
   viagem.consumoLitros = viagem.percurso / veiculo.consumoMedio
 
-  console.log(viagem.consumoLitros)
 
 // CALCULO PARA SABER O CUSTO EM REAIS (R$) DE ACORDO COM O CONSUMO EM LITROS
-if(combustivel.tipo.toLowerCase() === 'etanol'){
-  viagem.custoEmReais = viagem.consumoLitros * combustivel.precoEtanol
+combustivel.preco_combustivel = +input.precoCombustivel.value
+
+  viagem.custoEmReais = viagem.consumoLitros * combustivel.preco_combustivel
   // MÉTODO PARA FORMATAR O RESULTADO COMO MOEDA (R$)
-  console.log(`Custo do Etanol: ${viagem.custoEmReais.toLocaleString('pt-BR', {
-  style: 'currency',
-  currency: 'BRL'
-})}`)
-} else{
-  viagem.custoEmReais = viagem.consumoLitros * combustivel.precoGasolina
-    // MÉTODO PARA FORMATAR O RESULTADO COMO MOEDA (R$)
-  console.log(`Custo da Gasolina: ${viagem.custoEmReais.toLocaleString('pt-BR', {
-  style: 'currency',
-  currency: 'BRL'
-})}`)
-}
+
+
 
 elemento.paragrafo.innerText = `
-O consumo em litros para uma viagem de ${viagem.percurso.replace('.',',')} km 
-será de ${viagem.consumoLitros.toFixed(1).replace('.', ',')} litros 
+O consumo em litros para uma viagem de ${viagem.percurso} km 
+será de ${viagem.consumoLitros} litros 
 e o valor será de ${viagem.custoEmReais.toLocaleString('pt-BR', {
   style: 'currency',
   currency: 'BRL'
 })}`
+
+elemento.paragrafo.forEach((item)=>{
+  item.classList.toggle('color')
+})
 
 }
 
